@@ -49,3 +49,7 @@ po/*~
 rsconnect/
 
 README_files/
+
+code/single_obj/
+code/multi_obj/
+code/rounding/
