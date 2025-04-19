@@ -3,8 +3,8 @@
 % with M = 61, with various q_cost \in [0,1]
 
 %% Add utility functions from util directory
-addpath('./util');
-addpath('./single')
+addpath('../util');
+
 %% Initialzie the paramters 
 M = 61;
 S = [1, M]'; % design space
