@@ -1,9 +1,7 @@
 ---
 title: "Optimal Group Testing Design"
 date: today
-output: 
-  github_document:
-    toc: true
+format: gfm
 ---
 
 

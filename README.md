@@ -1,0 +1,28 @@
+# Optimal Group Testing Design
+
+2025-04-19
+
+## Description
+
+This repo holds the code to reproduce the manuscript entitled **Single
+and multi-objective optimal designs for group testing experiments** for
+computing optimal group testing design
+
+## References
+
+- Huang, S.-H., Lo Huang, M.-N., Shedeen, K. & Wong, W.K. (2017).  
+  [Optimal group testing designs for estimating prevalence with
+  uncertain testing
+  errors](https://rss.onlinelibrary.wiley.com/doi/full/10.1111/rssb.12223).
+  *JRSSB*, **79**, 1547–1563.
+
+- Huang, S.-H., Huang, M.-N.L. & Shedeen, K. (2021).  
+  [Optimal group testing designs for prevalence estimation combining
+  imperfect and gold standard
+  assays](https://projecteuclid.org/journals/electronic-journal-of-statistics/volume-15/issue-1/Optimal-group-testing-designs-for-prevalence-estimation-combining-imperfect-and/10.1214/20-EJS1786.full).
+  *Electronic Journal of Statistics*, **15**, 630–649.
+
+- Huang, S.-H., Huang, M.-N.L. & Shedeen, K. (2020).  
+  [Cost considerations for efficient group testing
+  studies](https://www.jstor.org/stable/pdf/26892784.pdf). *Statistica
+  Sinica*, **30**, 285–302.
