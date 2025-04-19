@@ -1,5 +1,3 @@
-% Author: Chi-Kuang Yeh
-% Date: March 07, 2025
 % Description:
 %   Compute OAD/OED design with fixed budget C using rounding & extension
 
