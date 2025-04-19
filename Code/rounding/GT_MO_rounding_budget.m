@@ -1,5 +1,3 @@
-% Author: Chi-Kuang Yeh
-% Date: April 2025
 % Description:
 %   Multi-objective rounding with a fixed total budget (cost C)
 
