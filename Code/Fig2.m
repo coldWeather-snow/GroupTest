@@ -4,7 +4,7 @@
 % addpath
 clear;
 addpath('util');
-run('Table2.m') 
+run('Table3.m') 
 % we obtain the results of the multi-objective group testing designs from
 % this script, make sure to change the value of the q_cost variable and M
 
