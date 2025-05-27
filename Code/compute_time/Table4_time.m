@@ -1,8 +1,11 @@
+%% Compute Budgeted OAD/OED Design with Timing
+start_time = tic;  % Start timer
+
 % Description:
 %   Compute OAD/OED design with fixed budget C using rounding & extension
 
 %% Initialization
-criterion = 'A';  % {'D', 'A', 'c', 'Ds'}
+criterion = 'Ds';  % {'D', 'A', 'c', 'Ds'}
 C = 100;            % Total cost budget
 M = 150;
 q_cost = 0.2;
@@ -156,15 +159,15 @@ switch criterion
     case 'A'
         loss_ex = calc_loss_A(M_ex);
         loss_app = calc_loss_A(M_app);
-        eff =  loss_app/ loss_ex;
+        eff =  loss_app / loss_ex;
     case 'c'
         loss_ex = calc_loss_c(M_ex, cVec_c);
         loss_app = calc_loss_c(M_app, cVec_c);
-        eff = loss_app/loss_ex;
+        eff = loss_app / loss_ex;
     case 'Ds'
         loss_ex = calc_loss_c(M_ex, cVec_Ds);
         loss_app = calc_loss_c(M_app, cVec_Ds);
-        eff = loss_app/loss_ex;
+        eff = loss_app / loss_ex;
 end
 
 %% 11. Final Output
@@ -177,3 +180,6 @@ disp(design_filter);
 fprintf('Efficiency (%s-optimality): %.4f\n', criterion, eff);
 fprintf('Total Cost Used: %.4f / %.2f | Remaining: %.4f\n', ...
     total_cost_used, C, C - total_cost_used);
+
+total_time = toc(start_time);  % End timing
+fprintf('\nTotal computational time: %.4f seconds\n', total_time);
