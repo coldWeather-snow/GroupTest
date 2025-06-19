@@ -2,12 +2,16 @@ function eff_struct = compute_efficiencies(loss_single, loss_target, criteria)
 % COMPUTE_EFFICIENCIES Computes efficiencies for multiple criteria.
 %
 % Inputs:
-%   loss_single     - struct with reference (optimal) losses (e.g., from D-opt design)
-%   loss_target  - struct with losses of current design (e.g., from maximin)
-%   criteria     - cell array of strings, e.g., {'D', 'A', 'Ds'}
+%   loss_single - struct with optimal losses (e.g., from D-opt design)
+%   loss_target - struct with losses of current design
+%   criteria    - string or cell array of strings, e.g., 'D' or {'D','A'}
 %
 % Output:
-%   eff_struct   - struct with efficiency values for each criterion
+%   eff_struct  - struct with efficiency values
+
+    if ischar(criteria) || isstring(criteria)
+        criteria = {char(criteria)};  % wrap in cell array
+    end
 
     eff_struct = struct();
 
@@ -20,11 +24,10 @@ function eff_struct = compute_efficiencies(loss_single, loss_target, criteria)
 
         switch crit
             case 'D'
-                % D-efficiency is typically: (|M_opt| / |M_target|)^(1/q)
-                % But if losses are 1/|M|, then:
-                eff_struct.D = (loss_single.D / loss_target.D)^(1/3);  % 3 = dim(FIM)
+                eff_struct.D = (loss_single.D  / loss_target.D )^(1/3);  % 3 = dim(FIM)
+            case 'E'
+                eff_struct.E = loss_target.E / loss_single.E;
             otherwise
-                % For A, Ds, c: efficiency = L_opt / L_target
                 eff_struct.(crit) = loss_single.(crit) / loss_target.(crit);
         end
     end

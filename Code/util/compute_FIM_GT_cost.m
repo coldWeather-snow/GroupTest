@@ -1,4 +1,4 @@
-function FIM = compute_FIM_GT_cost(di, wi, theta, q_cost)
+function [FIM, X] = compute_FIM_GT_cost(di, wi, theta, q_cost)
     % COMPUTE_FIM - Computes the Fisher Information Matrix (FIM) in a vectorized manner.
     %
     % Inputs:
@@ -30,7 +30,7 @@ function FIM = compute_FIM_GT_cost(di, wi, theta, q_cost)
 
     % Stack f vectors as a matrix (3 × N)
     F_vals = [f0_vals'; f1_vals'; f2_vals'];  % Transpose to match dimensions
-
+    X = F_vals';
     % Compute weighted Fisher Information Matrix (Vectorized)
     FIM = F_vals * diag(lam_vals .* w_vals) * F_vals';
 end

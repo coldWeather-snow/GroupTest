@@ -32,6 +32,10 @@ if any(strcmp(criterion, 'Ds'))
   cVec_Ds_Minv = inv_M * cVec_Ds;
   cVec_Ds_norm = cVec_Ds' * inv_M * cVec_Ds;
 end
+if any(strcmp(criterion, 'E'))
+  d_out.dE = zeros(N, 1);
+  [lambda_min_E, r_star, Q] = calc_smallest_eig_info(M, 1E-5);
+end
 
 for i = 1:N
   x = u(i);
@@ -57,6 +61,9 @@ for i = 1:N
   end
   if isfield(d_out, 'dDs')
     d_out.dDs(i) = lambda_x * (cVec_Ds' * inv_M * fx_fxT * inv_M * cVec_Ds) - cVec_Ds_norm;
+  end
+  if isfield(d_out, 'dE') && r_star == 1
+    d_out.dE(i) = lambda_x * fx' * Q *  Q' * fx - lambda_min_E;
   end
 end
 end

@@ -35,7 +35,8 @@ function loss_struct = compute_losses(M, criteria, opts)
                     error('Missing cVec_Ds in opts for Ds-optimality.');
                 end
                 loss_struct.Ds = calc_loss_c(M, opts.cVec_Ds);
-
+            case 'E'
+                loss_struct.E = calc_loss_E(M);
             otherwise
                 error('Unsupported criterion: %s', crit);
         end

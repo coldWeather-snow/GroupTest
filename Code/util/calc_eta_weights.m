@@ -26,6 +26,8 @@ function eta = calc_eta_weights(tstar, loss_ref, loss_model, directional_derivat
             name = criterion{k};
             if strcmp(name, 'D')
                 norm_expr = norm_expr + eta(k) * (3 / tstar);  % D-opt uses log det
+            elseif strcmp(name, 'E')
+                norm_expr = norm_expr + eta(k) * -loss_ref.E/tstar^2;  % D-opt uses log det
             else
                 norm_expr = norm_expr + eta(k) * loss_ref.(name);  % others use linear loss
             end
@@ -38,6 +40,8 @@ function eta = calc_eta_weights(tstar, loss_ref, loss_model, directional_derivat
             switch name
                 case 'D'
                     delta = log(loss_model.D) - log(loss_ref.D) - 3 * log(tstar);
+              case 'E'
+                  delta = loss_model.E - loss_ref.E/tstar;
                 otherwise
                     delta = loss_model.(name) - tstar * loss_ref.(name);
             end

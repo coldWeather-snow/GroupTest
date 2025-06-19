@@ -43,19 +43,18 @@ function result = compute_maximin_design(u, theta, q_cost, q, loss_ref, criteria
                 -log_det(M) - (log(loss_ref.D) + q * log(tstar)) <= 0;
             case 'A'
                 trace_inv(M) - tstar * loss_ref.A <= 0  ;
-
             case 'Ds'
                 if ~isfield(cVec_struct, 'cVec_Ds')
                     error('Missing DsVec in opts for Ds-optimality.');
                 end
                 matrix_frac(cVec_struct.cVec_Ds, M) - tstar * loss_ref.Ds <= 0;
-
             case 'c'
                 if ~isfield(cVec_struct, 'cVec_c')
                     error('Missing cVec in opts for c-optimality.');
                 end
                 matrix_frac(cVec_struct.cVec_c, M) - tstar * loss_ref.c <= 0 ; 
-
+          case 'E'
+            -lambda_min(M) - loss_ref.E * inv_pos(tstar) <= 0 ;
             otherwise
                 error('Unsupported criterion: %s', crit);
         end

@@ -7,7 +7,7 @@ function result = compute_design_SO(u, theta, q_cost, q, criterion, opts, tol)
 %   theta     - model parameters [p0; p1; p2]
 %   q_cost    - cost parameter
 %   q         - dimension of the FIM (should match length(theta))
-%   criterion - string: 'D', 'A', 'Ds', or 'c'
+%   criterion - string: 'D', 'A', 'Ds', 'E' or 'c'
 %   opts      - struct with optional vectors:
 %                 .cVec   (for 'c')
 %                 .DsVec  (for 'Ds')
@@ -44,7 +44,7 @@ switch criterion
 
     subject to
     matrix_frac(cVec, M) <= del;
-
+  
   case 'c'
     if ~isfield(opts, 'cVec_c')
       error('Missing cVec in opts for c-optimality.');
@@ -52,7 +52,8 @@ switch criterion
     cVec = opts.cVec_c;
     matrix_frac(cVec, M) <= del;
 
-
+  case 'E'
+    -lambda_min(M) < del;
   otherwise
     error('Unsupported criterion: %s', criterion);
 end
@@ -73,6 +74,8 @@ switch criterion
     loss = calc_loss_A(M);
   case {'c', 'Ds'}
     loss = calc_loss_c(M, cVec);
+  case 'E'
+    loss = calc_loss_E(M);
 end
 
 % Return all outputs in a struct
